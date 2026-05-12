@@ -24,7 +24,200 @@
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
   <!-- Template Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
- 
+  
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f7f5f0;
+    --surface: #ffffff;
+    --ink: #1a1814;
+    --muted: #7a746a;
+    --accent: #c0392b;
+    --accent-light: #fdf1f0;
+    --rule: #e2ddd6;
+    --tag-h-bg: #eaf2fb;
+    --tag-h-fg: #1a5fa8;
+    --tag-p-bg: #eef7ee;
+    --tag-p-fg: #1d6e2a;
+    --tag-lbr-bg: #fef5e7;
+    --tag-lbr-fg: #935d0d;
+    --tag-k-bg: #f3eef9;
+    --tag-k-fg: #5b2d8e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    padding: 3rem 1.5rem 6rem;
+  }
+
+  .page {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  /* Header */
+  header {
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .conference-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    line-height: 1.1;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+
+  .header-meta {
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* Legend */
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+
+  /* Day section */
+  .day-section {
+    margin-bottom: 4rem;
+  }
+
+  .day-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .day-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+  }
+
+  .day-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  /* Session rows */
+  .session {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 0 1.5rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: start;
+    animation: fadeUp 0.4s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .session:last-child { border-bottom: none; }
+
+  .session-time {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    padding-top: 0.15rem;
+    white-space: nowrap;
+  }
+
+  .session-body {}
+
+  .session-type {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.15em 0.55em;
+    border-radius: 3px;
+    margin-bottom: 0.35rem;
+  }
+
+  .tag-keynote  { background: var(--tag-k-bg);   color: var(--tag-k-fg); }
+  .tag-h        { background: var(--tag-h-bg);   color: var(--tag-h-fg); }
+  .tag-p        { background: var(--tag-p-bg);   color: var(--tag-p-fg); }
+  .tag-lbr      { background: var(--tag-lbr-bg); color: var(--tag-lbr-fg); }
+  .tag-break    { background: #f0f0ed; color: var(--muted); }
+
+  .session-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.35;
+    margin-bottom: 0.3rem;
+  }
+
+  .session-title em {
+    font-style: italic;
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+
+  .session-authors {
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .session-authors strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .break-label {
+    font-size: 0.88rem;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* Responsive */
+  @media (max-width: 560px) {
+    .session { grid-template-columns: 1fr; gap: 0.25rem; }
+    .session-time { font-size: 0.68rem; }
+  }
+</style>
 
 </head>
 <body>
@@ -58,102 +251,252 @@
 <div class="container">
 <div class="section-header"><h1>RECOMB-CCB 2026 Program</h1></div>
 
-TBA
-<!--
+  <div class="legend">
+    <div class="legend-item"><span class="session-type tag-keynote">Keynote</span> Invited keynote</div>
+    <div class="legend-item"><span class="session-type tag-h">H</span> Highlights track</div>
+    <div class="legend-item"><span class="session-type tag-p">P</span> Proceedings track</div>
+    <div class="legend-item"><span class="session-type tag-lbr">LBR</span> Late-Breaking Research</div>
+  </div>
 
-<section class="program section" id="program">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-12">
-        <hr>
-        <h4>Venue: Grand Ballroom A (B126), The Commons (Baekyang Nuri)</h4>
-        <hr>
+  <!-- DAY 1 -->
+  <div class="day-section">
+    <div class="day-header">
+      <span class="day-title">Day 1</span>
+      <span class="day-date">May 24</span>
+    </div>
 
-        <h5>Day 1: April 24th (Thursday)</h5>
+    <div class="session">
+      <div class="session-time">09:30 – 09:35</div>
+      <div class="session-body">
+        <span class="session-type tag-break">Welcome</span>
+      </div>
+    </div>
 
-        <div class="row">
-          <div class="col-md-3 col-sm-3 col-xs-3 col-4"><p class="time">08:30 - 09:30</p></div>
-          <div class="col-md-9 col-sm-9 col-xs-9 col-8"><p class="activity">Registration</p></div>
-        </div>
+    <div class="session">
+      <div class="session-time">09:35 – 10:35</div>
+      <div class="session-body">
+        <span class="session-type tag-keynote">Keynote 1</span>
+        <div class="session-title">AI models for spatial architecture and cell dynamics in cancer</div>
+        <div class="session-authors"><strong>Christina Leslie</strong></div>
+      </div>
+    </div>
 
-        <div class="row">
-          <div class="col-md-3 col-sm-3 col-xs-3 col-4"><p class="time">09:25 - 09:30</p></div>
-          <div class="col-md-9 col-sm-9 col-xs-9 col-8"><p class="activity">Opening Remarks</p></div>
-        </div>
+    <div class="session">
+      <div class="session-time">10:35 – 11:00</div>
+      <div class="session-body">
+        <span class="session-type tag-h">H</span>
+        <div class="session-title">The interpretable multimodal dimension reduction framework SpaHDmap enhances resolution in spatial transcriptomics</div>
+        <div class="session-authors">Junjie Tang, <strong>Zihao Chen</strong>, Kun Qian, Siyuan Huang, Yang He, Shenyi Yin, Xinyu He, Buqing Ye, Yan Zhuang, Hongxue Meng, Jianzhong Xi and Ruibin Xi</div>
+      </div>
+    </div>
 
-        <div class="row">
-          <div class="col-md-3 col-sm-3 col-xs-3 col-4"><p class="time">09:30 - 10:30</p></div>
-          <div class="col-md-9 col-sm-9 col-xs-9 col-8">
-            <p class="invited-speaker">Keynote 1: Josh Stuart (University of California Santa Cruz)</p>
-            <p class="text">
-              <b>[KT] Decoding the Grammar of Cancer: Charting Cancer’s Next Move One Cell At a Time</b>
-            </p>
-          </div>
-        </div>
+    <div class="session">
+      <div class="session-time">11:00 – 13:00</div>
+      <div class="session-body">
+        <span class="session-type tag-break">Break</span>
+        <div class="break-label">Poster session and lunch</div>
+      </div>
+    </div>
 
-        <div class="row">
-          <div class="col-md-3 col-sm-3 col-xs-3 col-4"><p class="time">10:30 - 10:45</p></div>
-          <div class="col-md-9 col-sm-9 col-xs-9 col-8"><p class="activity">Coffee Break</p></div>
-        </div>
+    <div class="session">
+      <div class="session-time">13:00 – 13:25</div>
+      <div class="session-body">
+        <span class="session-type tag-h">H</span>
+        <div class="session-title">Pan-cancer human brain metastases atlas at single-cell resolution</div>
+        <div class="session-authors"><strong>Xudong Xing</strong></div>
+      </div>
+    </div>
 
-        <div class="row">
-          <div class="col-md-3 col-sm-3 col-xs-3 col-4"><p class="time">10:45 - 11:55</p></div>
-          <div class="col-md-9 col-sm-9 col-xs-9 col-8">
-            <p class="session-title">Session 1</p>
-            <p class="text">
-              <b>[PT] Extending differential gene expression testing to handle genome aneuploidy in cancer</b>
-              <br>
-              <i>Katsiaryna Davydzenka, Giulio Caravagna and Guido Sanguinetti</i>
-            </p>
-            <hr>
-            <p class="text">
-              <b>[PT] Intratumor Heterogeneity Through the Lens of Gene Regulatory Networks</b>
-              <br>
-              <i>Narein Rao, Nicolae Sapoval, Hamim Zafar and Luay Nakhleh</i>
-            </p>
-            <hr>
-            <p class="text">
-              <b>[ST] Generating a Multimodal AI Framework for High Resolution Analysis of scATAC-seq Data on Human Immunity</b>
-              <br>
-              <i>Sydney Kuhl, Andreas Tjaernberg, Morgan Weiss, Jane Buckner, Cate Speake, Emma Kuan, Marla Glass, Troy R. Torgerson, Thomas F. Bumol, Claire Gustafson, Peter Skene, Mariano Gabitto, Xiaojun Li and Mark-Phillip Pebworth</i>
-            </p>
-            <hr>
-            <p class="text">
-              <b>[ST] Seed-Guided Identification of Disease-Specific Subnetworks in Biological Networks for Enhanced Biomarker Discovery</b>
-              <br>
-              <i>Gurkan Bebek and Hyun Jo Kim</i>
-            </p>
-            <hr>
-            <p class="text">
-              <b>[ST] A Sparse Graphical Model for Identifying Driver Mutation Dependencies in Cancer</b>
-              <br>
-              <i>Ahmed Shuaibi, Uthsav Chitra and Ben Raphael</i>
-            </p>
-          </div>
-        </div>
+    <div class="session">
+      <div class="session-time">13:25 – 13:50</div>
+      <div class="session-body">
+        <span class="session-type tag-p">P</span>
+        <div class="session-title">Tumor cell specific total mRNA expression informed neural networks predicts cancer progression</div>
+        <div class="session-authors">Ankita Paul, Jessica Lal, Shuangxi Ji, Carissa Fong, Kevin Chen, Yu Ding, Ruonan Li, Yaoyi Dai, Quang Tran, Matthew Montierth, Alberti Saverio, Scott Kopetz and <strong>Wenyi Wang</strong></div>
+      </div>
+    </div>
 
-        <div class="row">
-          <div class="col-md-3 col-sm-3 col-xs-3 col-4"><p class="time">12:10 - 13:30</p></div>
-          <div class="col-md-9 col-sm-9 col-xs-9 col-8"><p class="activity">Lunch / Poster Viewing</p></div>
-        </div>
+    <div class="session">
+      <div class="session-time">13:50 – 14:15</div>
+      <div class="session-body">
+        <span class="session-type tag-p">P</span>
+        <div class="session-title">Network-based analysis of glioblastoma identifies patient communities and cluster-specific biomarkers</div>
+        <div class="session-authors"><strong>Nicoleta Siminea</strong>, Daniela Florea, Mihaela Păun, Andrei Păun and Ion Petre</div>
+      </div>
+    </div>
 
-        <div class="row">
-          <div class="col-md-3 col-sm-3 col-xs-3 col-4"><p class="time">13:30 - 14:30</p></div>
-          <div class="col-md-9 col-sm-9 col-xs-9 col-8">
-            <p class="invited-speaker">Keynote 2: Yi Xing (University of Pennsylvania)</p>
-            <p class="text">
-              <b>[KT] TBD</b>
-            </p>
-          </div>
-        </div>
+    <div class="session">
+      <div class="session-time">14:15 – 15:00</div>
+      <div class="session-body">
+        <span class="session-type tag-break">Break</span>
+        <div class="break-label">Coffee break</div>
+      </div>
+    </div>
 
+    <div class="session">
+      <div class="session-time">15:00 – 16:00</div>
+      <div class="session-body">
+        <span class="session-type tag-keynote">Keynote 2</span>
+        <div class="session-title">Computational Insights from Autoimmunity and Implications for Cancer Immunology</div>
+        <div class="session-authors"><strong>Aly Khan</strong></div>
+      </div>
+    </div>
 
-        <p>*Time Zone: KST</p>
+    <div class="session">
+      <div class="session-time">16:00 – 16:25</div>
+      <div class="session-body">
+        <span class="session-type tag-p">P</span>
+        <div class="session-title">Toward identification of common DNA repair process in mutational signatures</div>
+        <div class="session-authors"><strong>Damian Wojtowicz</strong>, Marcin Wierzbinski, Jan Hoinka, Roded Sharan and Teresa Przytycka</div>
+      </div>
+    </div>
+
+    <div class="session">
+      <div class="session-time">16:25 – 16:45</div>
+      <div class="session-body">
+        <span class="session-type tag-lbr">LBR</span>
+        <div class="session-title">MOD-SQUARES detects low-fraction residual disease and predicts recurrence from plasma methylation in triple-negative breast cancer</div>
+        <div class="session-authors"><strong>Armaghan Sarvar</strong>, Elena Zaikova, Esther Kong, Viviana Cerda, Benjamin Furman, Karen Gelmon and Samuel Aparicio</div>
       </div>
     </div>
   </div>
-</section>
--->
+
+  <!-- DAY 2 -->
+  <div class="day-section">
+    <div class="day-header">
+      <span class="day-title">Day 2</span>
+      <span class="day-date">May 25</span>
+    </div>
+
+    <div class="session">
+      <div class="session-time">09:30 – 09:35</div>
+      <div class="session-body">
+        <span class="session-type tag-break">Welcome</span>
+      </div>
+    </div>
+
+    <div class="session">
+      <div class="session-time">09:35 – 10:35</div>
+      <div class="session-body">
+        <span class="session-type tag-keynote">Keynote 3</span>
+        <div class="session-title">Single-cell tumor phylogenies reveal prognostic evolutionary patterns and mutational dynamics</div>
+        <div class="session-authors"><strong>Simone Zaccaria</strong></div>
+      </div>
+    </div>
+
+    <div class="session">
+      <div class="session-time">10:35 – 11:00</div>
+      <div class="session-body">
+        <span class="session-type tag-p">P</span>
+        <div class="session-title">Scalable subclonal reconstruction of cancer cells in DNA sequencing data using a penalized likelihood model</div>
+        <div class="session-authors">Yujie Jiang, <strong>Matthew Montierth</strong>, Yu Ding, Kaixian Yu, Quang Tran, Aaron Wu, Ruonan Li, Shuangxi Ji, Xiaoqian Liu, Seung Jun Shin, Shaolong Cao, Yuxin Tang, Tom Lesluyes, Marek Kimmel, Jennifer Wang, Maxime Tarabichi, Hongtu Zhu, Peter Van Loo and Wenyi Wang</div>
+      </div>
+    </div>
+
+    <div class="session">
+      <div class="session-time">11:00 – 11:40</div>
+      <div class="session-body">
+        <span class="session-type tag-break">Break</span>
+        <div class="break-label">Coffee break</div>
+      </div>
+    </div>
+
+    <div class="session">
+      <div class="session-time">11:40 – 12:05</div>
+      <div class="session-body">
+        <span class="session-type tag-p">P</span>
+        <div class="session-title">scPlOver: inferring DNA content from amplification-free single-cell WGS using fragment overlaps</div>
+        <div class="session-authors"><strong>Matthew Myers</strong>, Gryte Satas, Sohrab Shah and Andrew McPherson</div>
+      </div>
+    </div>
+
+    <div class="session">
+      <div class="session-time">12:05 – 12:30</div>
+      <div class="session-body">
+        <span class="session-type tag-h">H</span>
+        <div class="session-title">CNSistent integration and feature extraction from somatic copy number profiles</div>
+        <div class="session-authors"><strong>Adam Streck</strong> and Roland F. Schwarz</div>
+      </div>
+    </div>
+
+    <div class="session">
+      <div class="session-time">12:30 – 12:55</div>
+      <div class="session-body">
+        <span class="session-type tag-p">P</span>
+        <div class="session-title">MOSAIC: Model-based, Subgroup-Aware Identification of Driver Mutations in Cancer</div>
+        <div class="session-authors"><strong>Kiersten Campbell</strong> and Matthew Reyna</div>
+      </div>
+    </div>
+
+    <div class="session">
+      <div class="session-time">12:55 – 14:30</div>
+      <div class="session-body">
+        <span class="session-type tag-break">Break</span>
+        <div class="break-label">Lunch break</div>
+      </div>
+    </div>
+
+    <div class="session">
+      <div class="session-time">14:30 – 15:30</div>
+      <div class="session-body">
+        <span class="session-type tag-keynote">Keynote 4</span>
+        <div class="session-title">Inferring cancer evolution from copy number alterations</div>
+        <div class="session-authors"><strong>Roland Schwarz</strong></div>
+      </div>
+    </div>
+
+    <div class="session">
+      <div class="session-time">15:30 – 15:50</div>
+      <div class="session-body">
+        <span class="session-type tag-lbr">LBR</span>
+        <div class="session-title">Conquer: a flexible, data-driven consensus framework for improving subclonal reconstruction</div>
+        <div class="session-authors">Songyun Li, <strong>Leah Weber</strong> and Peter Van Loo</div>
+      </div>
+    </div>
+
+    <div class="session">
+      <div class="session-time">15:50 – 16:30</div>
+      <div class="session-body">
+        <span class="session-type tag-break">Break</span>
+        <div class="break-label">Coffee break</div>
+      </div>
+    </div>
+
+    <div class="session">
+      <div class="session-time">16:30 – 16:55</div>
+      <div class="session-body">
+        <span class="session-type tag-h">H</span>
+        <div class="session-title">SMiTH: computational framework for unraveling histories of metastatic cancers under evolutionary constraints</div>
+        <div class="session-authors">Kiril Kuzmin, Henri Schmidt, Maryam Kafikang, Sagi Snir, Ben Raphael and <strong>Pavel Skums</strong></div>
+      </div>
+    </div>
+
+    <div class="session">
+      <div class="session-time">16:55 – 17:15</div>
+      <div class="session-body">
+        <span class="session-type tag-lbr">LBR</span>
+        <div class="session-title">LeafRank: A phylodynamic framework for inferring relative fitness from single-cell phylogenies in chromosomally unstable tumors</div>
+        <div class="session-authors"><strong>Chenyu Wu</strong>, Zicheng Wang and Ruping Sun</div>
+      </div>
+    </div>
+
+    <div class="session">
+      <div class="session-time">17:15 – 17:35</div>
+      <div class="session-body">
+        <span class="session-type tag-lbr">LBR</span>
+        <div class="session-title">Tracking the co-evolution of genome and transcriptome through treatment on the single-cell level</div>
+        <div class="session-authors"><strong>Maja Cwikla</strong>, Thomas Kono, Laura Godfrey, Nadine Wittstruck, Elias Fos, Thomas Konrad, Anton Henssen, Kerstin Haase, Matthias Fischer and Roland Schwarz</div>
+      </div>
+    </div>
+
+    <div class="session">
+      <div class="session-time">17:35 – 19:00</div>
+      <div class="session-body">
+        <span class="session-type tag-break">Poster Session</span>
+      </div>
+    </div>
+
+  </div><!-- end day 2 -->
 
 </div></section></main><footer id="footer" class="footer"><div class="container">
        <div class="credits">
